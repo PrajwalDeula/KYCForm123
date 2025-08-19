@@ -40,7 +40,6 @@ LOCAL_UNIT_CHOICES = [
 ]
 
 class KYCModel(models.Model):
-    """Comprehensive KYC information model with detailed personal data"""
     
     kyc_id = models.AutoField(primary_key=True)
     
@@ -95,7 +94,7 @@ class KYCModel(models.Model):
     
     # Professional Information
     qualification = models.CharField(max_length=100, choices=QUALIFICATION_CHOICES, blank=True, null=True)
-    profession = models.CharField(max_length=50, choices=PROFESSION_CHOICES, default='Service')
+    profession = models.CharField(max_length=50, choices=PROFESSION_CHOICES, default='Service', blank=True, null=True) 
     income_mode = models.CharField(max_length=50, choices=INCOME_MODE_CHOICES, default='Salary')
     income_amount = models.CharField(max_length=12, blank=True, null=True)
     pan_no = models.CharField(max_length=20, blank=True, null=True)
