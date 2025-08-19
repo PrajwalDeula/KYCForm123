@@ -51,7 +51,7 @@ class KYCModel(models.Model):
     nep_name = models.CharField(max_length=100, blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default='Male')
     nationality = models.CharField(max_length=50, choices=NATIONALITY_CHOICES, default='Nepalese')
-    date_of_birth_ad = models.DateField(blank=True, null=True, default=datetime.date.today)
+    date_of_birth_ad = models.DateField(blank=True, null=True)
     dob_bs = NepaliDateField(blank=True, null=True)
     
     # Family Information
@@ -70,7 +70,7 @@ class KYCModel(models.Model):
     
     # Identification Documents
     age_proof_doc = models.CharField(max_length=50, choices=AGE_PROOF_DOC_CHOICES, default='Citizenship')
-    document_number = models.CharField(max_length=100, verbose_name="Document Number", blank=False)
+    document_number = models.CharField(max_length=20, verbose_name="Document Number", blank=False)
     document_issued_date_bs = NepaliDateField(verbose_name="Document Issued Date (B.S.)")
     document_issued_date = models.DateField(verbose_name="Document Issued Date (A.D.)")
     issued_place = models.CharField(max_length=100, choices=ISSUED_PLACE_CHOICES, blank=True, null=True)
