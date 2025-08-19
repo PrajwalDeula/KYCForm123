@@ -1,0 +1,1114 @@
+<div class="form-container">
+    <h4 class="text-center sm-4 text-primary">KYC Record Form</h4>
+
+    <form method="POST" action="#">
+        {% csrf_token %}
+        
+        <!-- Display form-wide errors if any -->
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+                {{ error }}
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="d-flex justify-content-end">
+            <div class="btn-group gap-3">
+                <a href="#" class="btn btn-sm btn-outline-secondary d-flex justify-content-center align-items-center">
+                    <i class="fas fa-arrow-left me-2"></i> BACK
+                </a>
+                <button type="submit" class="btn btn-submit btn-sm text-white">
+                    SUBMIT
+                </button>
+            </div>
+        </div>
+        
+        <h5 class="section-header">Personal Details</h5>
+
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-5 offset-md-1">
+                <!-- First Name -->
+                <div class="form-group">
+                    <label for="first_name" class="form-label">
+                        First Name <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}" required>
+                    {% if form.first_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.first_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group">
+                    <label for="last_name" class="form-label">
+                        Last Name <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" id="last_name" name="last_name" value="{{ form.last_name.value|default:'' }}" required>
+                    {% if form.last_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.last_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Father Name -->
+                <div class="form-group">
+                    <label for="father_name" class="form-label">
+                        Father Name <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control {% if form.father_name.errors %}is-invalid{% endif %}" id="father_name" name="father_name" value="{{ form.father_name.value|default:'' }}" required>
+                    {% if form.father_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.father_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Mobile -->
+                <div class="form-group">
+                    <label for="mobile" class="form-label">
+                        Mobile <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control {% if form.mobile.errors %}is-invalid{% endif %}" id="mobile" name="mobile" value="{{ form.mobile.value|default:'' }}" required>
+                    {% if form.mobile.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.mobile.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Age Proof Doc -->
+                <div class="form-group">
+                    <label for="age_proof_doc" class="form-label">
+                        Age Proof Document
+                    </label>
+                    <select class="form-select {% if form.age_proof_doc.errors %}is-invalid{% endif %}" id="age_proof_doc" name="age_proof_doc">
+                        <option value="">Select Document</option>
+                        {% for value, label in form.age_proof_doc.field.choices %}
+                            <option value="{{ value }}" {% if form.age_proof_doc.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.age_proof_doc.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.age_proof_doc.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Structure -->
+                <div class="form-group">
+                    <label for="structure" class="form-label">
+                        Structure
+                    </label>
+                    <input type="text" class="form-control {% if form.structure.errors %}is-invalid{% endif %}" id="structure" name="structure" value="{{ form.structure.value|default:'' }}">
+                    {% if form.structure.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.structure.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Local Unit -->
+                <div class="form-group">
+                    <label for="local_unit" class="form-label">
+                        Local Unit
+                    </label>
+                    <input type="text" class="form-control {% if form.local_unit.errors %}is-invalid{% endif %}" id="local_unit" name="local_unit" value="{{ form.local_unit.value|default:'' }}">
+                    {% if form.local_unit.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.local_unit.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address" class="form-label">
+                        Address
+                    </label>
+                    <input type="text" class="form-control {% if form.address.errors %}is-invalid{% endif %}" id="address" name="address" value="{{ form.address.value|default:'' }}">
+                    {% if form.address.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.address.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Temporary Address -->
+                <div class="form-group">
+                    <label for="temporary_address" class="form-label">
+                        Temporary Address
+                    </label>
+                    <input type="text" class="form-control {% if form.temporary_address.errors %}is-invalid{% endif %}" id="temporary_address" name="temporary_address" value="{{ form.temporary_address.value|default:'' }}">
+                    {% if form.temporary_address.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.temporary_address.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Phone No -->
+                <div class="form-group">
+                    <label for="phone_no" class="form-label">
+                        Phone No
+                    </label>
+                    <input type="text" class="form-control {% if form.phone_no.errors %}is-invalid{% endif %}" id="phone_no" name="phone_no" value="{{ form.phone_no.value|default:'' }}">
+                    {% if form.phone_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone_no.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Profession -->
+                <div class="form-group">
+                    <label for="profession" class="form-label">
+                        Profession <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.profession.errors %}is-invalid{% endif %}" id="profession" name="profession" required>
+                        <option value="">Select Profession</option>
+                        {% for value, label in form.profession.field.choices %}
+                            <option value="{{ value }}" {% if form.profession.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.profession.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.profession.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Office Address -->
+                <div class="form-group">
+                    <label for="office_address" class="form-label">
+                        Office Address
+                    </label>
+                    <input type="text" class="form-control {% if form.office_address.errors %}is-invalid{% endif %}" id="office_address" name="office_address" value="{{ form.office_address.value|default:'' }}">
+                    {% if form.office_address.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.office_address.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Income Mode -->
+                <div class="form-group">
+                    <label for="income_mode" class="form-label">
+                        Income Mode <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.income_mode.errors %}is-invalid{% endif %}" id="income_mode" name="income_mode" required>
+                        <option value="">Select Income Mode</option>
+                        {% for value, label in form.income_mode.field.choices %}
+                            <option value="{{ value }}" {% if form.income_mode.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.income_mode.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.income_mode.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- PAN No -->
+                <div class="form-group">
+                    <label for="pan_no" class="form-label">
+                        PAN No
+                    </label>
+                    <input type="text" class="form-control {% if form.pan_no.errors %}is-invalid{% endif %}" id="pan_no" name="pan_no" value="{{ form.pan_no.value|default:'' }}">
+                    {% if form.pan_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.pan_no.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Bank Ac Name -->
+                <div class="form-group">
+                    <label for="bank_ac_name" class="form-label">
+                        Bank Account Name
+                    </label>
+                    <input type="text" class="form-control {% if form.bank_ac_name.errors %}is-invalid{% endif %}" id="bank_ac_name" name="bank_ac_name" value="{{ form.bank_ac_name.value|default:'' }}">
+                    {% if form.bank_ac_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.bank_ac_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Nep Name -->
+                <div class="form-group">
+                    <label for="nep_name" class="form-label">
+                        Nepali Name
+                    </label>
+                    <input type="text" class="form-control {% if form.nep_name.errors %}is-invalid{% endif %}" id="nep_name" name="nep_name" value="{{ form.nep_name.value|default:'' }}">
+                    {% if form.nep_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.nep_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Gender -->
+                <div class="form-group">
+                    <label for="gender" class="form-label">
+                        Gender <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.gender.errors %}is-invalid{% endif %}" id="gender" name="gender" required>
+                        <option value="">Select Gender</option>
+                        {% for value, label in form.gender.field.choices %}
+                            <option value="{{ value }}" {% if form.gender.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.gender.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.gender.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Qualification -->
+                <div class="form-group">
+                    <label for="qualification" class="form-label">
+                        Qualification <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.qualification.errors %}is-invalid{% endif %}" id="qualification" name="qualification" required>
+                        <option value="">Select Qualification</option>
+                        {% for value, label in form.qualification.field.choices %}
+                            <option value="{{ value }}" {% if form.qualification.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.qualification.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.qualification.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Politically Involved -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input {% if form.is_politically_involved.errors %}is-invalid{% endif %}" id="is_politically_involved" name="is_politically_involved" {% if form.is_politically_involved.value %}checked{% endif %}>
+                    <label for="is_politically_involved" class="form-check-label">
+                        Politically Involved <span class="text-danger">*</span>
+                    </label>
+                    {% if form.is_politically_involved.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.is_politically_involved.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-5 offset-md-1">
+                <!-- Salutation -->
+                <div class="form-group">
+                    <label for="salutation" class="form-label">
+                        Salutation
+                    </label>
+                    <select class="form-select {% if form.salutation.errors %}is-invalid{% endif %}" id="salutation" name="salutation">
+                        <option value="">Select Salutation</option>
+                        {% for value, label in form.salutation.field.choices %}
+                            <option value="{{ value }}" {% if form.salutation.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.salutation.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.salutation.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Middle Name -->
+                <div class="form-group">
+                    <label for="middle_name" class="form-label">
+                        Middle Name
+                    </label>
+                    <input type="text" class="form-control {% if form.middle_name.errors %}is-invalid{% endif %}" id="middle_name" name="middle_name" value="{{ form.middle_name.value|default:'' }}">
+                    {% if form.middle_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.middle_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Date of Birth BS/AD -->
+                <div class="form-group">
+                    <label class="form-label">
+                        Date of Birth <span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex align-items-center gap-2 w-100">
+                        <!-- BS Date -->
+                        <div class="flex-grow-1">
+                            <input type="text" class="form-control {% if form.dob_bs.errors %}is-invalid{% endif %}" id="dob_bs" name="dob_bs" value="{{ form.dob_bs.value|default:'' }}" placeholder="YYYY-MM-DD" required>
+                            {% if form.dob_bs.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.dob_bs.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- AD Date -->
+                        <div class="flex-grow-1">
+                            <input type="date" class="form-control {% if form.date_of_birth_ad.errors %}is-invalid{% endif %}" id="date_of_birth_ad" name="date_of_birth_ad" value="{{ form.date_of_birth_ad.value|default:'' }}">
+                            {% if form.date_of_birth_ad.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.date_of_birth_ad.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nep Father Name -->
+                <div class="form-group">
+                    <label for="nep_father_name" class="form-label">
+                        Nepali Father Name
+                    </label>
+                    <input type="text" class="form-control {% if form.nep_father_name.errors %}is-invalid{% endif %}" id="nep_father_name" name="nep_father_name" value="{{ form.nep_father_name.value|default:'' }}">
+                    {% if form.nep_father_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.nep_father_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Birth Place -->
+                <div class="form-group">
+                    <label for="birth_place" class="form-label">
+                        Birth Place
+                    </label>
+                    <input type="text" class="form-control {% if form.birth_place.errors %}is-invalid{% endif %}" id="birth_place" name="birth_place" value="{{ form.birth_place.value|default:'' }}">
+                    {% if form.birth_place.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.birth_place.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Document Number -->
+                <div class="form-group">
+                    <label for="document_number" class="form-label">
+                        Document Number <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control {% if form.document_number.errors %}is-invalid{% endif %}" id="document_number" name="document_number" value="{{ form.document_number.value|default:'' }}" required>
+                    {% if form.document_number.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.document_number.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Issued Place -->
+                <div class="form-group">
+                    <label for="issued_place" class="form-label">
+                        Issued Place <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.issued_place.errors %}is-invalid{% endif %}" id="issued_place" name="issued_place" required>
+                        <option value="">Select Issued Place</option>
+                        {% for value, label in form.issued_place.field.choices %}
+                            <option value="{{ value }}" {% if form.issued_place.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.issued_place.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.issued_place.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Document Issued Date (Combined BS/AD) -->
+                <div class="form-group">
+                    <label class="form-label">
+                        Issued Date <span class="text-danger">*</span>
+                    </label>
+                    <div class="d-flex align-items-center gap-2 w-100">
+                        <!-- BS Date -->
+                        <div class="flex-grow-1">
+                            <input type="text" class="form-control {% if form.document_issued_date_bs.errors %}is-invalid{% endif %}" id="document_issued_date_bs" name="document_issued_date_bs" value="{{ form.document_issued_date_bs.value|default:'' }}" placeholder="YYYY-MM-DD" required>
+                            {% if form.document_issued_date_bs.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.document_issued_date_bs.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- AD Date -->
+                        <div class="flex-grow-1">
+                            <input type="date" class="form-control {% if form.document_issued_date.errors %}is-invalid{% endif %}" id="document_issued_date" name="document_issued_date" value="{{ form.document_issued_date.value|default:'' }}">
+                            {% if form.document_issued_date.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.document_issued_date.errors %}
+                                        {{ error }}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Father/Mother Name -->
+                <div class="form-group">
+                    <label for="father_mother_name" class="form-label">
+                        Father/Mother Name
+                    </label>
+                    <input type="text" class="form-control {% if form.father_mother_name.errors %}is-invalid{% endif %}" id="father_mother_name" name="father_mother_name" value="{{ form.father_mother_name.value|default:'' }}">
+                    {% if form.father_mother_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.father_mother_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Ward No -->
+                <div class="form-group">
+                    <label for="ward_no" class="form-label">
+                        Ward No
+                    </label>
+                    <input type="number" class="form-control {% if form.ward_no.errors %}is-invalid{% endif %}" id="ward_no" name="ward_no" value="{{ form.ward_no.value|default:'' }}" min="1" max="36">
+                    {% if form.ward_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.ward_no.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Temporary District -->
+                <div class="form-group">
+                    <label for="temporary_district" class="form-label">
+                        Temporary District
+                    </label>
+                    <input type="text" class="form-control {% if form.temporary_district.errors %}is-invalid{% endif %}" id="temporary_district" name="temporary_district" value="{{ form.temporary_district.value|default:'' }}">
+                    {% if form.temporary_district.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.temporary_district.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- House No -->
+                <div class="form-group">
+                    <label for="house_no" class="form-label">
+                        House No
+                    </label>
+                    <input type="text" class="form-control {% if form.house_no.errors %}is-invalid{% endif %}" id="house_no" name="house_no" value="{{ form.house_no.value|default:'' }}">
+                    {% if form.house_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.house_no.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email" class="form-label">
+                        Email
+                    </label>
+                    <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" id="email" name="email" value="{{ form.email.value|default:'' }}">
+                    {% if form.email.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Firm Name -->
+                <div class="form-group">
+                    <label for="firm_name" class="form-label">
+                        Firm Name
+                    </label>
+                    <input type="text" class="form-control {% if form.firm_name.errors %}is-invalid{% endif %}" id="firm_name" name="firm_name" value="{{ form.firm_name.value|default:'' }}">
+                    {% if form.firm_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.firm_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Income Amount -->
+                <div class="form-group">
+                    <label for="income_amount" class="form-label">
+                        Income Amount <span class="text-danger">*</span>
+                    </label>
+                    <input type="number" class="form-control {% if form.income_amount.errors %}is-invalid{% endif %}" id="income_amount" name="income_amount" value="{{ form.income_amount.value|default:'' }}" required>
+                    {% if form.income_amount.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.income_amount.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Bank Ac No -->
+                <div class="form-group">
+                    <label for="bank_ac_no" class="form-label">
+                        Bank Account No
+                    </label>
+                    <input type="text" class="form-control {% if form.bank_ac_no.errors %}is-invalid{% endif %}" id="bank_ac_no" name="bank_ac_no" value="{{ form.bank_ac_no.value|default:'' }}">
+                    {% if form.bank_ac_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.bank_ac_no.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Address Nepali -->
+                <div class="form-group">
+                    <label for="address_nepali" class="form-label">
+                        Address (Nepali)
+                    </label>
+                    <input type="text" class="form-control {% if form.address_nepali.errors %}is-invalid{% endif %}" id="address_nepali" name="address_nepali" value="{{ form.address_nepali.value|default:'' }}">
+                    {% if form.address_nepali.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.address_nepali.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Proposer Full Name -->
+                <div class="form-group">
+                    <label for="proposer_full_name" class="form-label">
+                        Proposer Full Name
+                    </label>
+                    <input type="text" class="form-control {% if form.proposer_full_name.errors %}is-invalid{% endif %}" id="proposer_full_name" name="proposer_full_name" value="{{ form.proposer_full_name.value|default:'' }}">
+                    {% if form.proposer_full_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.proposer_full_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Nationality -->
+                <div class="form-group">
+                    <label for="nationality" class="form-label">
+                        Nationality <span class="text-danger">*</span>
+                    </label>
+                    <select class="form-select {% if form.nationality.errors %}is-invalid{% endif %}" id="nationality" name="nationality" required>
+                        <option value="">Select Nationality</option>
+                        {% for value, label in form.nationality.field.choices %}
+                            <option value="{{ value }}" {% if form.nationality.value == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if form.nationality.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.nationality.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- AML Crime -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input {% if form.is_aml_crime.errors %}is-invalid{% endif %}" id="is_aml_crime" name="is_aml_crime" {% if form.is_aml_crime.value %}checked{% endif %}>
+                    <label for="is_aml_crime" class="form-check-label">
+                        AML Crime
+                    </label>
+                    {% if form.is_aml_crime.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.is_aml_crime.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <h5 class="section-header mt-4">Family Details</h5>
+        <div class="row">
+            <!-- Left Column -->
+            <div class="col-md-5 offset-md-1">
+                <!-- Spouse Name -->
+                <div class="form-group">
+                    <label for="spouse_name" class="form-label">
+                        Spouse Name
+                    </label>
+                    <input type="text" class="form-control {% if form.spouse_name.errors %}is-invalid{% endif %}" id="spouse_name" name="spouse_name" value="{{ form.spouse_name.value|default:'' }}">
+                    {% if form.spouse_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.spouse_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Mother Name -->
+                <div class="form-group">
+                    <label for="mother_name" class="form-label">
+                        Mother Name
+                    </label>
+                    <input type="text" class="form-control {% if form.mother_name.errors %}is-invalid{% endif %}" id="mother_name" name="mother_name" value="{{ form.mother_name.value|default:'' }}">
+                    {% if form.mother_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.mother_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Son Name -->
+                <div class="form-group">
+                    <label for="son_name" class="form-label">
+                        Son Name
+                    </label>
+                    <input type="text" class="form-control {% if form.son_name.errors %}is-invalid{% endif %}" id="son_name" name="son_name" value="{{ form.son_name.value|default:'' }}">
+                    {% if form.son_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.son_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Daughter/InLaw Name -->
+                <div class="form-group">
+                    <label for="daughter_in_law_name" class="form-label">
+                        Daughter/InLaw Name
+                    </label>
+                    <input type="text" class="form-control {% if form.daughter_in_law_name.errors %}is-invalid{% endif %}" id="daughter_in_law_name" name="daughter_in_law_name" value="{{ form.daughter_in_law_name.value|default:'' }}">
+                    {% if form.daughter_in_law_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.daughter_in_law_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- GrandFather/InLaw Name -->
+                <div class="form-group">
+                    <label for="grandfather_in_law_name" class="form-label">
+                        GrandFather/InLaw Name
+                    </label>
+                    <input type="text" class="form-control {% if form.grandfather_in_law_name.errors %}is-invalid{% endif %}" id="grandfather_in_law_name" name="grandfather_in_law_name" value="{{ form.grandfather_in_law_name.value|default:'' }}">
+                    {% if form.grandfather_in_law_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.grandfather_in_law_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Family Politically Involved -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input {% if form.is_family_politically_involved.errors %}is-invalid{% endif %}" id="is_family_politically_involved" name="is_family_politically_involved" {% if form.is_family_politically_involved.value %}checked{% endif %}>
+                    <label for="is_family_politically_involved" class="form-check-label">
+                        Family Politically Involved <span class="text-danger">*</span>
+                    </label>
+                    {% if form.is_family_politically_involved.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.is_family_politically_involved.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-5 offset-md-1">
+                <!-- Grand Father Name -->
+                <div class="form-group">
+                    <label for="grand_father_name" class="form-label">
+                        Grand Father Name
+                    </label>
+                    <input type="text" class="form-control {% if form.grand_father_name.errors %}is-invalid{% endif %}" id="grand_father_name" name="grand_father_name" value="{{ form.grand_father_name.value|default:'' }}">
+                    {% if form.grand_father_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.grand_father_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Daughter Name -->
+                <div class="form-group">
+                    <label for="daughter_name" class="form-label">
+                        Daughter Name
+                    </label>
+                    <input type="text" class="form-control {% if form.daughter_name.errors %}is-invalid{% endif %}" id="daughter_name" name="daughter_name" value="{{ form.daughter_name.value|default:'' }}">
+                    {% if form.daughter_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.daughter_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Father/InLaw Name -->
+                <div class="form-group">
+                    <label for="father_in_law_name" class="form-label">
+                        Father/InLaw Name
+                    </label>
+                    <input type="text" class="form-control {% if form.father_in_law_name.errors %}is-invalid{% endif %}" id="father_in_law_name" name="father_in_law_name" value="{{ form.father_in_law_name.value|default:'' }}">
+                    {% if form.father_in_law_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.father_in_law_name.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <!-- Family AML Crime -->
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input {% if form.is_family_aml_crime.errors %}is-invalid{% endif %}" id="is_family_aml_crime" name="is_family_aml_crime" {% if form.is_family_aml_crime.value %}checked{% endif %}>
+                    <label for="is_family_aml_crime" class="form-check-label">
+                        Family AML Crime
+                    </label>
+                    {% if form.is_family_aml_crime.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.is_family_aml_crime.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    // Helper functions
+    function markFieldInvalid(field, message) {
+        field.addClass('is-invalid');
+        field.next('.error-message').remove();
+        field.after('<div class="error-message text-danger small mt-1">' + message + '</div>');
+    }
+    
+    function clearFieldError(field) {
+        field.removeClass('is-invalid');
+        field.next('.error-message').remove();
+    }
+    
+    function isValidEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+    }
+    
+    function isValidMobile(mobile) {
+        const re = /^9\d{1,2}-\d{7}$/;
+        return re.test(mobile);
+    }
+    
+    function isValidDate(dateString) {
+        const re = /^\d{4}-\d{2}-\d{2}$/;
+        return re.test(dateString);
+    }
+    
+    function isValidPAN(pan) {
+        const re = /^\d{9}$/; // Changed to 9 digits only
+        return re.test(pan);
+    }
+
+    function isValidWardNo(wardNo) {
+        const num = parseInt(wardNo);
+        return !isNaN(num) && num >= 1 && num <= 36;
+    }
+
+    function isValidIncomeAmount(amount) {
+        // Check if it's a whole number (no decimals)
+        const re = /^\d+$/;
+        return re.test(amount);
+    }
+
+    function isValidDocumentNumber(docNumber) {
+        // Only numbers allowed
+        const re = /^\d+$/;
+        return re.test(docNumber);
+    }
+
+    function isValidBankAccountNumber(bankNumber) {
+        // Only numbers allowed
+        const re = /^\d+$/;
+        return re.test(bankNumber);
+    }
+
+    // Apply input mask for mobile number
+    $('#mobile').inputmask('999-9999999');
+
+    // Apply input mask for Date of Birth BS field (YYYY-MM-DD format)
+    $('#dob_bs').inputmask('9999-99-99', {placeholder: "YYYY-MM-DD"});
+    
+    // Apply input mask for Document Issued Date BS field
+    $('#document_issued_date_bs').inputmask('9999-99-99', {placeholder: "YYYY-MM-DD"});
+
+    // Apply input mask for phone number
+    $('#phone_no').inputmask('999-9999999');
+    
+    // Apply input mask for PAN number (9 digits only)
+    $('#pan_no').inputmask('999999999', {placeholder: ""});
+
+    // Only allow numbers for document number
+    $('#document_number').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    // Only allow numbers for bank account number
+    $('#bank_ac_no').on('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    // Nepali font validation (Devanagari script)
+    const nepaliRegex = /^[\u0900-\u097F\u1CD0-\u1CFF\uA8E0-\uA8FF ]+$/;
+    
+    // Nepali field validation on blur
+    $('#nep_name').on('blur', function() {
+        if ($(this).val().trim() && !nepaliRegex.test($(this).val())) {
+            markFieldInvalid($(this), 'कृपया नेपालीमा मात्र लेख्नुहोस्');
+        } else {
+            clearFieldError($(this));
+        }
+    });
+    
+    $('#nep_father_name').on('blur', function() {
+        if ($(this).val().trim() && !nepaliRegex.test($(this).val())) {
+            markFieldInvalid($(this), 'कृपया नेपालीमा मात्र लेख्नुहोस्');
+        } else {
+            clearFieldError($(this));
+        }
+    });
+    
+    $('#address_nepali').on('blur', function() {
+        if ($(this).val().trim() && !nepaliRegex.test($(this).val())) {
+            markFieldInvalid($(this), 'कृपया नेपालीमा मात्र लेख्नुहोस्');
+        } else {
+            clearFieldError($(this));
+        }
+    });
+
+    // Remove default 0 from house number
+    $('#house_no').val('');
+
+    // Form validation
+    $('form').submit(function(e) {
+        let isValid = true;
+        let firstErrorField = null;
+        
+        // Clear previous error highlights (only for client-side validation)
+        $('.form-control, .form-select').removeClass('is-invalid');
+        $('.error-message').remove();
+        
+        // Required field validation
+        $('[required]').each(function() {
+            if (!$(this).val().trim()) {
+                isValid = false;
+                markFieldInvalid($(this), 'This field is required');
+                if (!firstErrorField) firstErrorField = this;
+            }
+        });
+        
+        // Email validation
+        const emailField = $('#email');
+        if (emailField.val().trim() && !isValidEmail(emailField.val())) {
+            isValid = false;
+            markFieldInvalid(emailField, 'Please enter a valid email address');
+            if (!firstErrorField) firstErrorField = emailField[0];
+        }
+        
+        // Mobile number validation
+        const mobileField = $('#mobile');
+        if (mobileField.val().trim() && !isValidMobile(mobileField.val())) {
+            isValid = false;
+            markFieldInvalid(mobileField, 'Please enter a valid mobile number (format: 98-1234567)');
+            if (!firstErrorField) firstErrorField = mobileField[0];
+        }
+        
+        // Date of Birth validation
+        const dobBsField = $('#dob_bs');
+        const dobAdField = $('#date_of_birth_ad');
+        
+        if (dobBsField.val().trim() && !isValidDate(dobBsField.val())) {
+            isValid = false;
+            markFieldInvalid(dobBsField, 'Please enter a valid date (YYYY-MM-DD)');
+            if (!firstErrorField) firstErrorField = dobBsField[0];
+        }
+        
+        if (dobAdField.val().trim() && !isValidDate(dobAdField.val())) {
+            isValid = false;
+            markFieldInvalid(dobAdField, 'Please enter a valid date (YYYY-MM-DD)');
+            if (!firstErrorField) firstErrorField = dobAdField[0];
+        }
+        
+        // Document issued date validation
+        const docIssuedBsField = $('#document_issued_date_bs');
+        const docIssuedAdField = $('#document_issued_date');
+        
+        if (docIssuedBsField.val().trim() && !isValidDate(docIssuedBsField.val())) {
+            isValid = false;
+            markFieldInvalid(docIssuedBsField, 'Please enter a valid date (YYYY-MM-DD)');
+            if (!firstErrorField) firstErrorField = docIssuedBsField[0];
+        }
+        
+        if (docIssuedAdField.val().trim() && !isValidDate(docIssuedAdField.val())) {
+            isValid = false;
+            markFieldInvalid(docIssuedAdField, 'Please enter a valid date (YYYY-MM-DD)');
+            if (!firstErrorField) firstErrorField = docIssuedAdField[0];
+        }
+        
+        // Document number validation (only numbers)
+        const docNumberField = $('#document_number');
+        if (docNumberField.val().trim() && !isValidDocumentNumber(docNumberField.val())) {
+            isValid = false;
+            markFieldInvalid(docNumberField, 'Please enter numbers only for document number');
+            if (!firstErrorField) firstErrorField = docNumberField[0];
+        }
+        
+        // Bank account number validation (only numbers)
+        const bankAcNoField = $('#bank_ac_no');
+        if (bankAcNoField.val().trim() && !isValidBankAccountNumber(bankAcNoField.val())) {
+            isValid = false;
+            markFieldInvalid(bankAcNoField, 'Please enter numbers only for bank account number');
+            if (!firstErrorField) firstErrorField = bankAcNoField[0];
+        }
+        
+        // PAN number validation (9 digits)
+        const panField = $('#pan_no');
+        if (panField.val().trim() && !isValidPAN(panField.val())) {
+            isValid = false;
+            markFieldInvalid(panField, 'Please enter a valid PAN number (9 digits only)');
+            if (!firstErrorField) firstErrorField = panField[0];
+        }
+        
+        // Ward number validation (1-36)
+        const wardField = $('#ward_no');
+        if (wardField.val().trim() && !isValidWardNo(wardField.val())) {
+            isValid = false;
+            markFieldInvalid(wardField, 'Please enter a valid ward number (1-36)');
+            if (!firstErrorField) firstErrorField = wardField[0];
+        }
+        
+        // Income amount validation (no decimals)
+        const incomeField = $('#income_amount');
+        if (incomeField.val().trim() && !isValidIncomeAmount(incomeField.val())) {
+            isValid = false;
+            markFieldInvalid(incomeField, 'Please enter a whole number (no decimals)');
+            if (!firstErrorField) firstErrorField = incomeField[0];
+        }
+        
+        // Nepali font validation
+        const nepNameField = $('#nep_name');
+        if (nepNameField.val().trim() && !nepaliRegex.test(nepNameField.val())) {
+            isValid = false;
+            markFieldInvalid(nepNameField, 'कृपया नेपाली फन्टमा मात्र लेख्नुहोस्');
+            if (!firstErrorField) firstErrorField = nepNameField[0];
+        }
+        
+        const nepFatherField = $('#nep_father_name');
+        if (nepFatherField.val().trim() && !nepaliRegex.test(nepFatherField.val())) {
+            isValid = false;
+            markFieldInvalid(nepFatherField, 'कृपया नेपाली फन्टमा मात्र लेख्नुहोस्');
+            if (!firstErrorField) firstErrorField = nepFatherField[0];
+        }
+        
+        const addressNepField = $('#address_nepali');
+        if (addressNepField.val().trim() && !nepaliRegex.test(addressNepField.val())) {
+            isValid = false;
+            markFieldInvalid(addressNepField, 'कृपया नेपाली फन्टमा मात्र लेख्नुहोस्');
+            if (!firstErrorField) firstErrorField = addressNepField[0];
+        }
+        
+        // If not valid, prevent form submission and scroll to first error
+        if (!isValid) {
+            e.preventDefault();
+            if (firstErrorField) {
+                $('html, body').animate({
+                    scrollTop: $(firstErrorField).offset().top - 100
+                }, 500);
+                $(firstErrorField).focus();
+            }
+        }
+    });
+});
+</script>
